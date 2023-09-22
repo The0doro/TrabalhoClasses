@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercício JS - Classes e Objetos</title>
+</head>
+<body>
+
+<script>
+    // Passo 1: Criar a classe Pessoa
+    class Pessoa {
+        constructor(cpf, nome) {
+            this.cpf = cpf;
+            this.nome = nome;
+        }
+    }
+
+    // Passo 2: Criar as classes Professor e Aluno herdando de Pessoa
+    class Professor extends Pessoa {
+        constructor(cpf, nome, area, telefone) {
+            super(cpf, nome);
+            this.area = area;
+            this.telefone = telefone;
+        }
+    }
+
+    class Aluno extends Pessoa {
+        constructor(cpf, nome, matricula) {
+            super(cpf, nome);
+            this.matricula = matricula;
+        }
+    }
+
+    // Passo 3: Criar a classe Turma com as propriedades solicitadas
+    class Turma {
+        constructor(professor, alunos, identificacao) {
+            this.professor = professor;
+            this.alunos = alunos;
+            this.identificacao = identificacao;
+        }
+    }
+
+    // Passo 4: Criar objetos professores e alunos
+    const professor1 = new Professor("12345678901", "Prof. Telecken", "Web front end", "123-456-7890");
+    const professor2 = new Professor("98765432101", "Prof. Raquel", "Introd. a programação", "987-654-3210");
+
+    const aluno1 = new Aluno("05275597096", "Theo", "2022303386");
+    const aluno2 = new Aluno("22222222201", "João Pedro", "A67890");
+    const aluno3 = new Aluno("33333333301", "Gabriel Marques Canto", "B12345");
+    const aluno4 = new Aluno("44444444401", "Gabriel Rodrigues", "B67890");
+
+    // Passo 5: Criar objetos Turma
+    const turma1 = new Turma(professor1, [aluno1, aluno2], "Turma de Web-backfront-end");
+    const turma2 = new Turma(professor2, [aluno3, aluno4], "Turma de Introdução a programação");
+
+    // Exibir os dados das turmas na página HTML
+    function exibirDadosTurmas() {
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.innerHTML = `<h2>Dados das Turmas</h2>
+        <h3>Turma 1</h3>
+        Identificação da Turma: ${turma1.identificacao}<br>
+        Professor: ${turma1.professor.nome}<br>
+        Área: ${turma1.professor.area}<br>
+        Telefone: ${turma1.professor.telefone}<br>
+        Alunos:<br>
+        ${turma1.alunos.map(aluno => `CPF: ${aluno.cpf}, NOME: ${aluno.nome}, MATRÍCULA: ${aluno.matricula}`).join('<br>')}
+
+        <h3>Turma 2</h3>
+        Identificação da Turma: ${turma2.identificacao}<br>
+        Professor: ${turma2.professor.nome}<br>
+        Área: ${turma2.professor.area}<br>
+        Telefone: ${turma2.professor.telefone}<br>
+        Alunos:<br>
+        ${turma2.alunos.map(aluno => `CPF: ${aluno.cpf}, NOME: ${aluno.nome}, MATRÍCULA: ${aluno.matricula}`).join('<br>')}`;
+        
+        document.body.appendChild(resultadoDiv);
+    }
+
+    // Chamar a função para exibir os dados das turmas
+    exibirDadosTurmas();
+</script>
+
+</body>
+</html>
